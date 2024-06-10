@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMovie } from "../../redux/actions/movieActions";
 import { fetchActors } from "../../redux/actions/actorActions";
 import { fetchProducers } from "../../redux/actions/producerActions";
+import AddProducer from '../producer/AddProducer'
+import AddActor from '../actors/AddActor'
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
@@ -202,6 +204,7 @@ const AddMovie = () => {
             <span className="text-red-500">{errors.actors}</span>
           )}
         </div>
+        
 
         <div className="form-control">
           <label className="label">
@@ -235,6 +238,50 @@ const AddMovie = () => {
             <span className="text-red-500">{errors.description}</span>
           )}
         </div>
+        <div>
+          <label className="label">
+            <span className="label-text">new Actor:</span>
+          </label>
+          <button
+            className="btn btn-outline btn-warning w-full"
+            onClick={() => document.getElementById("actor").showModal()}
+          >
+            Add Actor
+          </button>
+        </div>
+
+        <dialog id="actor" className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
+              </button>
+            </form>
+            <AddActor />
+          </div>
+        </dialog>
+
+        <div>
+          <label className="label">
+            <span className="label-text">new Producer:</span>
+          </label>
+          <button
+            className="btn btn-outline btn-warning w-full"
+            onClick={() => document.getElementById("producer").showModal()}
+          >
+            Add Actor
+          </button>
+          <dialog id="producer" className="modal">
+            <div className="modal-box">
+              <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <AddProducer />
+            </div>
+          </dialog>
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Poster:</span>
@@ -259,6 +306,7 @@ const AddMovie = () => {
             "Add Movie"
           )}
         </button>
+        
       </form>
     </div>
   );
